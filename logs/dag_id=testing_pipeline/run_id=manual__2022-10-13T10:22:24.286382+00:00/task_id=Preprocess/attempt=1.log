@@ -1,0 +1,39 @@
+[2022-10-13T10:22:25.158+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: testing_pipeline.Preprocess manual__2022-10-13T10:22:24.286382+00:00 [queued]>
+[2022-10-13T10:22:25.165+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: testing_pipeline.Preprocess manual__2022-10-13T10:22:24.286382+00:00 [queued]>
+[2022-10-13T10:22:25.165+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-13T10:22:25.165+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-10-13T10:22:25.165+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-13T10:22:25.173+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): Preprocess> on 2022-10-13 10:22:24.286382+00:00
+[2022-10-13T10:22:25.176+0000] {standard_task_runner.py:54} INFO - Started process 16452 to run task
+[2022-10-13T10:22:25.177+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'testing_pipeline', 'Preprocess', 'manual__2022-10-13T10:22:24.286382+00:00', '--job-id', '867', '--raw', '--subdir', 'DAGS_FOLDER/test_pipeline.py', '--cfg-path', '/tmp/tmpazg65fti']
+[2022-10-13T10:22:25.178+0000] {standard_task_runner.py:83} INFO - Job 867: Subtask Preprocess
+[2022-10-13T10:22:25.179+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/test_pipeline.py
+[2022-10-13T10:22:26.602+0000] {task_command.py:384} INFO - Running <TaskInstance: testing_pipeline.Preprocess manual__2022-10-13T10:22:24.286382+00:00 [running]> on host d013b488c150
+[2022-10-13T10:22:26.639+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=protik.nag
+AIRFLOW_CTX_DAG_ID=testing_pipeline
+AIRFLOW_CTX_TASK_ID=Preprocess
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-13T10:22:24.286382+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-10-13T10:22:24.286382+00:00
+[2022-10-13T10:22:26.640+0000] {logging_mixin.py:117} INFO - LKSDF:  /opt/***
+[2022-10-13T10:22:26.640+0000] {logging_mixin.py:117} INFO - New:  /home
+[2022-10-13T10:22:26.641+0000] {taskinstance.py:1851} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 193, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/preprocess.py", line 42, in preprocess
+    target_size=(150, 150)
+  File "/home/airflow/.local/lib/python3.7/site-packages/keras/preprocessing/image.py", line 1668, in flow_from_directory
+    dtype=self.dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/keras/preprocessing/image.py", line 563, in __init__
+    for subdir in sorted(os.listdir(directory)):
+FileNotFoundError: [Errno 2] No such file or directory: './data/train/'
+[2022-10-13T10:22:26.645+0000] {taskinstance.py:1406} INFO - Marking task as FAILED. dag_id=testing_pipeline, task_id=Preprocess, execution_date=20221013T102224, start_date=20221013T102225, end_date=20221013T102226
+[2022-10-13T10:22:26.651+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 867 for task Preprocess ([Errno 2] No such file or directory: './data/train/'; 16452)
+[2022-10-13T10:22:26.672+0000] {local_task_job.py:164} INFO - Task exited with return code 1
+[2022-10-13T10:22:26.690+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
